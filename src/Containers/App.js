@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
-import SearchBar from '../Components/SearchBar.jsx';
+import { Route } from 'react-router-dom';
 import Cards from '../Components/Cards.jsx'
 import './App.css';
+import City from '../Components/City.jsx';
+import Nav from '../Components/Nav.jsx';
+import About from '../Components/About.jsx';
 
 const apiKey = 'secret';
 
@@ -46,8 +49,19 @@ export default function App() {
 
   return (
     <div className='App'>
-      <SearchBar onSearch={onSearch} />
-      <Cards cities={cities} onClose={onClose} />
+      <Route path="/">
+        <Nav onSearch={onSearch}/>
+      </Route>
+      <Route exact path="/about">
+        <About />
+      </Route>
+      <Route exact path="/">
+        <Cards cities={cities} onClose={onClose} />
+      </Route>
+      <Route
+        exact path={`/ciudad/:ciudadId`}
+        render={({match}) => <City city={onFilter(match.params.ciudadId)}/>}
+      />
     </div>
   );
 }

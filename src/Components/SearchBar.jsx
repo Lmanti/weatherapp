@@ -14,7 +14,7 @@ export default function SearchBar({onSearch}) {
         value={city}
         onChange={e => setCity(e.target.value)}
       />
-      <input type='submit' value='Agregar' />
+      <input type='submit' value='Add City' />
     </form>
   );
 }
